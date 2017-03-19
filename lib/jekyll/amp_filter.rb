@@ -86,7 +86,7 @@ module Jekyll
 
     def amp_remove_style(input)
       doc = Nokogiri::HTML.fragment(input);
-      doc.xpath('//@style').remove
+      doc.xpath('@style|.//@style').remove
 
       doc.to_s
     end
