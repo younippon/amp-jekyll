@@ -83,6 +83,13 @@ module Jekyll
       # Return the html as plaintext string
       doc.to_s
     end
+
+    def amp_remove_style(input)
+      doc = Nokogiri::HTML.fragment(input);
+      doc.xpath('//@style').remove
+      puts.doc.css('tr')
+      puts.doc.css('ol')
+    end
   end
 end
 
