@@ -43,8 +43,8 @@ module Jekyll
       # Excerpt will cause an error if kept
       self.data.delete('excerpt')
 
-      self.data['canonical_url'] = post.url
-      self.data['related_posts'] = post.related_posts
+      self.data['canonical_url'] = feature.url
+      self.data['related_posts'] = feature.related_posts
 
     end
   end
@@ -58,10 +58,10 @@ module Jekyll
         next if post.data['skip_amp'] == true || site.incremental? == true
         site.pages << AmpPost.new(site, site.source, File.join(dir, post.id), post)
       end
-      dir = site.config['ampdir'] || 'amp-features'
-      site.features.docs.each do |feature|
+      dir = site.config['ampdir'] || 'amp'
+      site.collections["features"].docs.each do |feature|
         next if feature.data['skip_amp'] == true || site.incremental? == true
-        site.pages << AmpPost.new(site, site.source, File.join(dir, feature.id), feature)
+        site.pages << AmpFeature.new(site, site.source, File.join(dir, feature.id), feature)
       end
     end
   end
